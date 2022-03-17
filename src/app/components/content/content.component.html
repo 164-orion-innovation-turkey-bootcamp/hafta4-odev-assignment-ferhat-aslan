@@ -1,0 +1,50 @@
+
+<div class="bg-light shadow-lg mx-auto " style="padding: 25px ;margin-top: 15px ;width: 90vw; height: 25px; border-radius: 25px;justify-content: center;align-items: center;display: flex;">
+
+<div class="mx-auto">	Categories: <select class="mx-auto"  style="border-radius: 25px; border: 1px solid grey;" (change)="changeCategory($event)" value="All">
+  <option [ngValue]="null" disabled>Select Category</option>
+  <option selected value=''>All</option>
+  <option value="electronics">Electronics</option>
+  <option value="jewelery">Jewelery </option>
+  <option value="men's clothing">Men's Clothing </option>
+  <option value="women's clothing">Women's Clothing </option>
+</select></div><div class="mx-auto">Sort by: <select style="border-radius: 25px; border: 1px solid grey;" (change)="sorting($event)" value="All">
+    <option value='' selected >None</option>
+		<option  value='price'>price</option>
+		<option value="rating">Rating</option>
+
+	</select> </div></div>
+<div class="d-flex flex-wrap my-5" >
+  <div class="card mx-auto my-3 shadow-lg text-center p-1" style="width: 18rem; max-height: 350px;" *ngFor="let product of filterCategory | filter:searchKey:'title'" >
+    <div id="carouselExampleControls" class="carousel slide bg-dark" data-bs-ride="carousel" style="display:flex;justify-content: center; align-items: center;">
+      <div class="carousel-inner" >
+        <div class="carousel-item active" style="display:flex;justify-content: center; align-items: center;">
+          <img  [src]="product.image" class="d-block img-fluid" alt="..." width="65px" height="65px">
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{product.title  | slice:0:15}}...</h5>
+      <p class="card-text fw-light">{{product.description  | slice:0:55}}...</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item blockquote-footer">{{product.category}}</li>
+      <li class="list-group-item ">{{product.price  |currency:'USD'}}</li>
+      <li class="list-group-item">Rating: {{product.rating.rate}}</li>
+    </ul>
+    <div class="card-body">
+      <button  (click)="addtocart(product)" class="btn btn-dark btn-sm">Add to Cart</button>
+      <button [routerLink]="['/product', product.id]" class="btn btn-dark btn-sm">Details</button>
+
+    </div>
+  </div>
+</div>

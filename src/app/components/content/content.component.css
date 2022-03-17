@@ -1,0 +1,13 @@
+.list-group-item{
+  margin: 0;
+  padding: 0;
+}
+img{
+  height: 100px;
+  width: auto;
+}
+.btn-dark{
+  margin-right: 25px;
+border-radius: 0;
+background-color: black;
+}

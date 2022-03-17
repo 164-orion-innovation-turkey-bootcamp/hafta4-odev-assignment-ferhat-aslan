@@ -1,0 +1,74 @@
+
+
+<div class="content" role="main">
+
+
+  <div class=" col">
+    <hr>
+
+<h3>Register</h3>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+      <label for="exampleInputPassword1">First Name</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="firstname" id="firstname" formControlName="firstname">
+      <small class="text-danger "
+      *ngIf="registerForm.get('firstname') && !registerForm.get('firstname')!.valid && registerForm.get('firstname')!.touched">email is
+      required!</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Last Name</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="lastname" id="lastname" formControlName="lastname">
+      <small class="text-danger "
+      *ngIf="registerForm.get('lastname') && !registerForm.get('lastname')!.valid && registerForm.get('lastname')!.touched">email is
+      required!</small>
+    </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" id="email" formControlName="email">
+        <small class="text-danger "
+        *ngIf="registerForm.get('email') && !registerForm.get('email')!.valid && registerForm.get('email')!.touched">email is
+        required!</small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" id="password" formControlName="password">
+        <small>Password to be min 5 char.</small><div><small class="text-danger "
+          *ngIf="registerForm.get('password') && !registerForm.get('password')!.valid && registerForm.get('password')!.touched">email is
+          required!</small></div>
+
+      </div>
+      <hr>
+<br>
+
+
+      <button type="submit" class="btn btndark">register</button>
+    </form>
+    <a routerLink="../login">already have account?</a>
+
+  </div>
+  <!-- Next Steps -->
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>
+
+
+
