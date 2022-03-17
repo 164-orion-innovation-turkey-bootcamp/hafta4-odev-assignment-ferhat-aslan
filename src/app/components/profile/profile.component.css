@@ -1,0 +1,12 @@
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.better{
+  font-family: 'Hubballi', cursive;
+font-size: 19px;
+font-weight: 900;
+}

@@ -6,51 +6,50 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  searchString:string="";
-  public filterCategory:any;
+  searchString: string = '';
+  public filterCategory: any;
 
-  constructor(private pservice:ProductService,private cService:CartService,private rout:Router) { }
-itemNumber:number=0;
+  constructor(
+    private pservice: ProductService,
+    private cService: CartService,
+    private rout: Router
+  ) {}
+  itemNumber: number = 0;
   ngOnInit(): void {
-    this.pservice.category.subscribe(res=>{
-      this.filterCategory=res;
-    })
-    this.cService.getProductList().subscribe(
-      res=>{
-        this.itemNumber=res.length;
+    this.pservice.category.subscribe((res) => {
+      this.filterCategory = res;
+    });
+    this.cService.getProductList().subscribe((res) => {
+      this.itemNumber = res.length;
+    });
+  }
+  search(event: any) {
+    this.searchString = event.target.value;
+    this.pservice.search.next(this.searchString);
+  }
+  filter(category: string) {
+    this.filterCategory = this.filterCategory.filter((a: any) => {
+      if (a.category == category || category == '') {
+        return a;
       }
-    )
+    });
+    this.pservice.category.next(this.filterCategory);
   }
-search(event:any){
-this.searchString=event.target.value
-this.pservice.search.next(this.searchString);
+  //this function was defined for the logout.
 
-}
-filter(category:string){
-this.filterCategory=this.filterCategory.filter(
-  (a:any)=>{
-    if(a.category==category || category==''){
-      return a;
+  logout() {
+    localStorage.removeItem('user');
+    this.rout.navigate(['../login']);
+  }
+      //this function was defined for login control.  for Ng If
+
+  loginControl() {
+    if (localStorage.getItem('user')) {
+      return true;
     }
+    return false;
   }
-)
-this.pservice.category.next(this.filterCategory);
-console.log("ficg"+this.filterCategory);
-
 }
-logout(){
-  localStorage.removeItem('user')
-  this.rout.navigate(['../login'])
-}
-loginControl(){
-  if(localStorage.getItem('user')){
-    return true;
-  }
-  return false;
-}
-
-}
-

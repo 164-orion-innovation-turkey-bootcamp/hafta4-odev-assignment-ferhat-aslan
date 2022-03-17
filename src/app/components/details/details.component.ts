@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,14 +11,18 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DetailsComponent implements OnInit,OnDestroy {
 product:any;
-id:any
+id!:number
+//a Subscription was defined for the unsubscribe.
 sub!:Subscription;
   constructor(private productService:ProductService,private activatedRout:ActivatedRoute) { }
+  //when component was destroyed,lastly this function have will be call.
   ngOnDestroy(): void {
+    //unsubscribe operation
     this.sub.unsubscribe();
   }
 
   ngOnInit(): void {
+    //url parameter was taken for the product details
     this.sub = this.activatedRout.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
 
@@ -25,7 +30,6 @@ sub!:Subscription;
    });
     this.productService.getProductDetail(this.id).subscribe(res=>{
       this.product=res;
-      console.log("detail girdi product aldı",res);
 
     })
   }

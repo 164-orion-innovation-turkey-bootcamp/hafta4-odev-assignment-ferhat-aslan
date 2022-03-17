@@ -8,51 +8,33 @@ import { ProductService } from 'src/app/services/product.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-cart', ///when we use this component at the parent component we will use this name.
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit,OnChanges {
+export class CartComponent implements OnInit {
   constructor(private cartService: CartService,private routen:Router,private prSer:ProductService) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    this.totalPrice=0
-    this.cartService.getProductList().subscribe((res) => {
-      this.cartItems=res
-      this.leng = res.length;
-      console.log('length' + this.leng);
-      res.map((a:any)=>{
-        this.totalPrice= a.price+this.totalPrice
-      });
-      console.log("total "+ this.totalPrice);
 
-    });
-
-  }
 OrderList:Order[]=[];
   leng: number=0;
   totalPrice:number=0;
   cartItems:any =[];
+  //was taken user data from localstorage
   lstorage:any=localStorage.getItem('user')
   user=JSON.parse(this.lstorage)
   ngOnInit(): void {
+        //getproductlist is a observable. if we want to pull data, we have to use the subscribe.
+
     this.cartService.getProductList().subscribe((res) => {
       this.cartItems=res
       this.leng = res.length;
-      console.log('length' + this.leng);
       res.map((a:any)=>{
         this.totalPrice= a.price+this.totalPrice
       });
-      console.log("total "+ this.totalPrice);
 
     });
   }
-  cartLength() {
-    if (this.leng > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  //a function was defined for removing from cart
   removeCart(product:any){
     this.cartService.removeCartItem(product)
     this.leng=this.cartItems.length
@@ -63,28 +45,27 @@ OrderList:Order[]=[];
       this.totalPrice= a.price+this.totalPrice
     });
   }
+  //a function for order process
   order(){
-    console.log("id"+this.user.id);
 
     this.OrderList=this.cartItems.map((item:any)=>{
+      //all cart items convert to Order model
       return{
         user_id:this.user.id,orders:{product_id:item.id,count:1}
       }
     });
-console.log("Order List");
-console.log(this.OrderList);
+
 for (let index = 0; index < this.OrderList.length; index++) {
   const element = this.OrderList[index];
+  //and pushed the server
   this.prSer.order(element).subscribe(res=>{
-    console.log(res);
 
   },err=>{
-    console.log(err);
 
   })
 }
 
-
+//a confirm dialog package was used.
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -101,7 +82,7 @@ for (let index = 0; index < this.OrderList.length; index++) {
           'success'
         );
         this.routen.navigate(['home'])
-
+//after all order process, the cart list was cleared.
     this.cartService.productList.next([])
       }
     })

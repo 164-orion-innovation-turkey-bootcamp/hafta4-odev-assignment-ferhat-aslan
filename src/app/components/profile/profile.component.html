@@ -1,1 +1,29 @@
-<p>profile works!</p>
+<div class="bg-light content text-center"><img src="../../../assets/logo.png" width="75px" height="auto">
+<div>Firstname:</div>
+  <div class="better">{{user.firstname}}</div>
+  <div>Lastname:</div>
+<div class="better">{{user.lastname}}</div>
+<div>Email:</div>
+<div class="better">{{user.email}}</div>
+
+<h1>Your Orders</h1>
+<table class="table" style="max-width: 85vw;">
+  <thead>
+    <tr>
+      <th scope="col">Product Id</th>
+      <th scope="col">Product Title</th>
+      <th scope="col">Product Price</th>
+      <th scope="col">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of products" >
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.title}}</td>
+      <td>{{item.price | currency:'USD'}}</td>
+      <td>{{orders[0].orders.count}}</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>

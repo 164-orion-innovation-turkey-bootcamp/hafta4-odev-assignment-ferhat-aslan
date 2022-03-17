@@ -1,9 +1,7 @@
-export class User {
-  firstname!:string;
-  lastname!:string;
-  email!:string;
-  gender!:string;
-  constructor(){
-    this.gender="male"
-  }
+export interface User {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+
 }

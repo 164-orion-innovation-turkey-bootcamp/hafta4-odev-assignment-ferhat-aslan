@@ -13,7 +13,7 @@ export class SplashComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.windowWidth = "-" + window.innerWidth + "px";
-
+///splash screen time is 4 seconds.after that, splash screen wil be invisible.
       setTimeout(() => {
         this.showSplash = !this.showSplash;
       }, 300);
