@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { ConfirmedValidator } from 'src/app/validator/ConfirmedValidator';
+import { ConfirmedValidator } from 'src/app/validator/confirmedvalidator';
+
 
 @Component({
   selector: 'app-register-page',

@@ -67,9 +67,12 @@ for (let index = 0; index < this.OrderList.length; index++) {
 
 //a confirm dialog package was used.
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
+      title: 'Type your address and credit card',
+      inputPlaceholder: 'Type your address here...',
+      html:
+    '<input id="swal-input1" class="swal2-input" placeholder="type your address">' +
+    '<input id="swal-input2" class="swal2-input" placeholder="type your credit cart">',
+      icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
