@@ -1,7 +1,7 @@
 <h1 align="center">Angular E-Commerce App(Patika)</h1>
 
 
-<h2 align="center"><a href="">LIVE :tv:</a></h2>
+<h2 align="center"><a href="https://angular-e-commerce-app.vercel.app/">LIVE :tv:</a></h2>
 <div align="center"><img src="https://img.shields.io/github/last-commit/164-orion-innovation-turkey-bootcamp/hafta4-odev-assignment-ferhat-aslan" alt="Star Badge"/><img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
 <a href="https://github.com/ferhat-aslan" ><img src="https://img.shields.io/github/followers/ferhat-aslan?label=Ferhat%20Aslan&style=social" /> </a></div>
 <h3 align="center">Languages and Tools:</h3>
@@ -10,20 +10,39 @@
 
 
 
+
+
+
 ## Contents:
  - [Categories](#categories)
       - [Video](#video)
+      - [About](#about-project)
+      - [Used Packages And Modules](#used-packages-and-modules)
       - [Getting Started](#getting-started)
       - [Server](#server)
       - [Prerequisites](#prerequisites)
       - [Installation](#installation)
       - [Contact](#contact)
       
-
 ## Video
 
-<div align="center"><img src="https://media.giphy.com/media/3o85xKRIokv92FRo52/giphy.gif" alt="Star Badge"/></div>
+https://user-images.githubusercontent.com/83245111/158995244-994ed44e-e887-44ba-82b5-1ccf3901d3d2.mp4
 
+
+
+## About Project
+ This Project is Patika-Orion Innovation Turkey Angular Bootcamp assignment. Developed using Angular 13 and Bootstrap 5. The server is active on heroku. Also, you can test the project live in Vercel.
+
+## Used Packages And Modules
+
+- AppRoutingModule
+- HttpClientModule
+- FormsModule
+- ReactiveFormsModule
+- Sweetalert2
+- Font Awesome
+- Bootstrap 5
+- Google Fonts
 
 ## Getting Started
 

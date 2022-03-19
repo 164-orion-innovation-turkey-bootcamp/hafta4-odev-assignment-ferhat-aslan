@@ -31,23 +31,23 @@ export class ProductService {
   }
   //this function was defined for the get product detail.
 
-  getProductDetail<T>(id: number): Observable<T> {
+  getProductDetail<Product>(id: number): Observable<Product> {
     return this.http
-      .get<T>('https://patika-server-app.herokuapp.com/products/' + id)
+      .get<Product>('https://patika-server-app.herokuapp.com/products/' + id)
       .pipe();
   }
   //this function was defined for the ordering.
 
-  order<T>(order: Order): Observable<T> {
+  order<Order>(order: Order): Observable<Order> {
     return this.http
-      .post<T>('https://patika-server-app.herokuapp.com/orders', order)
+      .post<Order>('https://patika-server-app.herokuapp.com/orders', order)
       .pipe();
   }
   //this function was defined for the user order.
 
-  getUserOrder<T>(): Observable<T> {
+  getUserOrder<Order>(): Observable<Order> {
     return this.http
-      .get<T>('https://patika-server-app.herokuapp.com/orders')
+      .get<Order>('https://patika-server-app.herokuapp.com/orders')
       .pipe();
   }
 }

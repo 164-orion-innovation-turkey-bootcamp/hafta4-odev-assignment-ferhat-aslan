@@ -77,7 +77,7 @@ user:User={
         //the suscribe method has two output.
         //if reguest ended up succesfully
         window.alert('başarılı');
-        this.router.navigate(['loginpage']);
+        this.router.navigate(['login']);
       });
     }
   }
