@@ -28,6 +28,8 @@ export class NavbarComponent implements OnInit {
   }
   search(event: any) {
     this.searchString = event.target.value;
+    console.log(event.target.value);
+
     this.pservice.search.next(this.searchString);
   }
   filter(category: string) {

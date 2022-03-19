@@ -17,7 +17,7 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" [(ngModel)]="searchString" (keyup)="search($event)" type="search" placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone: true}">
+        <input class="css-input" [(ngModel)]="searchString" (keyup)="search($event)" type="text" placeholder="Search" aria-label="Search" [ngModelOptions]="{standalone: true}">
 
       </form>
       <button [routerLink]="['cart']" class="btn d-flex btn-dark" type="button"><i  style="font-size: 19px; color: black;" class="fas fa-cart-plus"></i><div style="font-size: 13px;" class="badge bg-danger">{{itemNumber}}</div></button>
