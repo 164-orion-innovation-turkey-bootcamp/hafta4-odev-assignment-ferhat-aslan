@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -8,7 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   searchString: string = '';
   public filterCategory: any;
 
@@ -17,12 +18,20 @@ export class NavbarComponent implements OnInit {
     private cService: CartService,
     private rout: Router
   ) {}
+  //2 subscriptions defined for unsubscribe when components destroy.
+  sub!: Subscription;
+  sub2!: Subscription;
+//when app on destroyed, this func will be start.
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
+  }
   itemNumber: number = 0;
   ngOnInit(): void {
-    this.pservice.category.subscribe((res) => {
+    this.sub = this.pservice.category.subscribe((res) => {
       this.filterCategory = res;
     });
-    this.cService.getProductList().subscribe((res) => {
+    this.sub2 = this.cService.getProductList().subscribe((res) => {
       this.itemNumber = res.length;
     });
   }
@@ -46,7 +55,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('user');
     this.rout.navigate(['../login']);
   }
-      //this function was defined for login control.  for Ng If
+  //this function was defined for login control.  for Ng If
 
   loginControl() {
     if (localStorage.getItem('user')) {

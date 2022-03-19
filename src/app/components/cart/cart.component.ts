@@ -1,6 +1,7 @@
 import { JsonpClientBackend } from '@angular/common/http';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Route, Router, RouterLinkActive } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Order } from 'src/app/models/order';
 import { User } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
@@ -12,20 +13,24 @@ import Swal from 'sweetalert2';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit,OnDestroy {
   constructor(private cartService: CartService,private routen:Router,private prSer:ProductService) {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
 OrderList:Order[]=[];
   leng: number=0;
   totalPrice:number=0;
   cartItems:any =[];
+  sub!:Subscription;
   //was taken user data from localstorage
   lstorage:any=localStorage.getItem('user')
   user=JSON.parse(this.lstorage)
   ngOnInit(): void {
         //getproductlist is a observable. if we want to pull data, we have to use the subscribe.
 
-    this.cartService.getProductList().subscribe((res) => {
+  this.sub=  this.cartService.getProductList().subscribe((res) => {
       this.cartItems=res
       this.leng = res.length;
       res.map((a:any)=>{

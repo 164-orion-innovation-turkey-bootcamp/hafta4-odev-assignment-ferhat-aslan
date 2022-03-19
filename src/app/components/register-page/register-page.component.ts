@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { ConfirmedValidator } from 'src/app/validator/confirmedvalidator';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ConfirmedValidator } from 'src/app/validator/confirmedvalidator';
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit,OnDestroy {
   //defined a variable that named registerForm for Form
 user:User={
   firstname: '',
@@ -20,6 +21,8 @@ user:User={
   email: '',
   password: ''
 };
+//2 subscriptions defined for unsubscribe when components destroy.
+sub!:Subscription;
   public registerForm!: FormGroup;
 
   constructor(
@@ -27,6 +30,10 @@ user:User={
     private router: Router,
     private authSer: AuthServiceService
   ) {}
+  //when app on destroyed, this func will be start.
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
   ngOnInit(): void {
     //the function that named registerForm was called when view was started.
@@ -73,7 +80,7 @@ user:User={
         password: this.registerForm.value.password
       };
       //sent the user model to server, and suscribed for the request.
-      this.authSer.registerUser(this.user).subscribe((req) => {
+    this.sub=  this.authSer.registerUser(this.user).subscribe((req) => {
         //the suscribe method has two output.
         //if reguest ended up succesfully
         window.alert('başarılı');
