@@ -16,7 +16,9 @@ import Swal from 'sweetalert2';
 export class CartComponent implements OnInit,OnDestroy {
   constructor(private cartService: CartService,private routen:Router,private prSer:ProductService) {}
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 OrderList:Order[]=[];

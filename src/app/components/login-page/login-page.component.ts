@@ -23,7 +23,9 @@ export class LoginPageComponent implements OnInit,OnDestroy {
   ) {}
   //when app on destroyed, this func will be start.
  ngOnDestroy(): void {
+  if (this.sub) {
     this.sub.unsubscribe();
+  }
   }
 
   ngOnInit(): void {

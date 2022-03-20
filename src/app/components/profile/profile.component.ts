@@ -20,8 +20,12 @@ export class ProfileComponent implements OnInit,OnDestroy {
   constructor(private prSer: ProductService) {}
   //when app on destroyed, this func will be start.
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+    if (this.sub2) {
+      this.sub2.unsubscribe();
+    }
   }
 
   ngOnInit(): void {

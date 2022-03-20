@@ -2,12 +2,13 @@
 <!-- Toolbar -->
 
 
-<div class="content" role="main">
+<div class="container" role="main">
 
 
-  <div class=" col">
-    <hr>
+  <div class="row justify-content-md-center row-cols-1 row-cols-sm-2">
 
+<div class="col">
+  <hr>
     <h3>Login</h3>
 
     <form [formGroup]="loginForm" #f="ngForm" (submit)="login()">
@@ -33,7 +34,12 @@
       <button type="submit" [disabled]="!loginForm.valid" class="btn btndark">Submit</button>
     </form>
     <a routerLink="../register">Create New User?</a>
-
+  </div>
+  <!-- other column Steps -->
+  <div class="col mt-5">
+    <h4>Please login to see our products</h4>
+    <img src="../../../assets/login-image.png" alt="asdasd" width="50%" height="auto">
+  </div>
   </div>
 
   <!-- Next Steps -->

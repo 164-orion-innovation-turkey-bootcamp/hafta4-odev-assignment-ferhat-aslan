@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,11 +15,13 @@ product:any;
 id!:number
 //a Subscription was defined for the unsubscribe.
 sub!:Subscription;
-  constructor(private productService:ProductService,private activatedRout:ActivatedRoute) { }
+  constructor(private productService:ProductService,private activatedRout:ActivatedRoute,private cartSer:CartService) { }
   //when component was destroyed,lastly this function have will be call.
   ngOnDestroy(): void {
     //unsubscribe operation
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
@@ -32,6 +35,9 @@ sub!:Subscription;
       this.product=res;
 
     })
+  }
+  addtocart(product: any) {
+    this.cartSer.addtoCart(product);
   }
 
 }

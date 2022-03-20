@@ -32,7 +32,9 @@ sub!:Subscription;
   ) {}
   //when app on destroyed, this func will be start.
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   ngOnInit(): void {

@@ -35,8 +35,12 @@ export class ContentComponent implements OnInit,OnDestroy {
 
   ngOnDestroy(): void {
 
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+    if (this.sub2) {
+      this.sub2.unsubscribe();
+    }
   }
   //when component was init , firstly this function will start.
 
