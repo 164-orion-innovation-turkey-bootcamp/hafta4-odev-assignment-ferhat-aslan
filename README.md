@@ -26,9 +26,7 @@
 
 ## Video
 
-https://user-images.githubusercontent.com/83245111/158995244-994ed44e-e887-44ba-82b5-1ccf3901d3d2.mp4
-
-
+https://user-images.githubusercontent.com/83245111/159362797-874b9e7b-fb5d-4645-bd17-a97e0622ebd7.mp4
 
 ## About Project
  This Project is Patika-Orion Innovation Turkey Angular Bootcamp assignment. Developed using Angular 13 and Bootstrap 5. The server is active on heroku. Also, you can test the project live in Vercel.
