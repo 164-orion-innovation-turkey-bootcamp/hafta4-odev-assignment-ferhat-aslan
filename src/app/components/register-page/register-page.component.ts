@@ -50,7 +50,7 @@ sub!:Subscription;
           [
             Validators.required,
             Validators.email,
-            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+            //Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
           ],
         ],
         password: [
@@ -58,9 +58,8 @@ sub!:Subscription;
           [
             Validators.required,
             Validators.minLength(5),
-            Validators.pattern(
-              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{5,}'
-            ),
+            //Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{5,}'
+           // ),
           ],
         ],
         confirmpassword: ['', [Validators.required, Validators.minLength(5)]],
